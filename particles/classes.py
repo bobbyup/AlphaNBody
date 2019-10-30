@@ -12,7 +12,8 @@ class Particle(object):
                  initial_time=0,
                  initial_position=None,
                  initial_velocity=None,
-                 initial_fuel=default_fuel):
+                 initial_fuel=default_fuel,
+                 thrust_velocity = None):
 
         self.id = id  # Particle's UID
         self.mass = mass  # Particle's mass in kilograms
@@ -39,8 +40,8 @@ class Particle(object):
     def current_position(self):
         return self.state_list[-1][1]
 
-    def step(self, update_function, thrust, step_length):
-        new_state = update_function(self, thrust, step_length)
+    def step(self, update_function, thrust, step_length, thrust velocity, thrust_degree):
+        new_state = update_function(self, thrust, step_length,thrust_velocity,  thrust_degree)
         self.state_list.append(new_state)
         return new_state
 
